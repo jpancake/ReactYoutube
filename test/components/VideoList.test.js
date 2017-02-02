@@ -56,6 +56,9 @@ function getProps(props) {
         }
       }
     ],
+    onVideoSelect() {
+
+    },
     ...props
   }
 }
