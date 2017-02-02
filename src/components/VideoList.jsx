@@ -5,15 +5,15 @@ import VideoListItem from './VideoListItem'
 const VideoList = ({ videos, onVideoSelect }) => {
   const renderVideoList = videos.map((video) => {
     return (
-        <li><VideoListItem
+        <VideoListItem
             video={video}
             onVideoSelect={onVideoSelect}
-            key={video.etag}
-        /></li>
+            key={video.id.videoId}
+        />
     )
   })
   return (
-      <section>
+      <section className="video-list">
         <ul className="list-group">
           {renderVideoList}
         </ul>

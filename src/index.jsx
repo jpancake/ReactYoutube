@@ -2,8 +2,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './components/App'
-import './styles/index.sass'
+import App from 'Components/App'
+import 'Styles'
 
 
 ReactDOM.render(

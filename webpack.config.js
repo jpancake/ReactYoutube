@@ -30,7 +30,10 @@ module.exports = {
   },
   resolve: {
     modules: [__dirname, 'node_modules'],
-    extensions: ['.js', '.jsx', '.sass', '.scss']
+    extensions: ['.js', '.jsx', '.sass', '.scss'],
+    alias: {
+      Components: path.resolve(__dirname, 'src/components')
+    }
   },
   module: {
     rules: [

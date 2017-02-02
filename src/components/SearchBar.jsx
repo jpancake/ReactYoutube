@@ -7,20 +7,28 @@ export default class SearchBar extends Component {
       term: ''
     }
     this._onInputSubmit = this._onInputSubmit.bind(this)
+    this._handleChange = this._handleChange.bind(this)
   }
 
   _onInputSubmit(e) {
     e.preventDefault()
     this.props.onInputSubmit(this.state.term)
+    this.setState({ term: '' })
+  }
+
+  _handleChange(event) {
+    this.setState({
+      term: event.target.value
+    })
   }
 
   render() {
     return (
         <form onSubmit={this._onInputSubmit} className="search-bar">
           <input
-            type="text"
+            type="search"
             value={this.state.term}
-            onChange={event => this.setState({ term: event.target.value })}
+            onChange={this._handleChange}
           />
         </form>
     )

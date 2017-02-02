@@ -5,7 +5,7 @@ import SearchBar from './SearchBar'
 import VideoDetail from './VideoDetail'
 import VideoList from './VideoList'
 
-const API_KEY = 'AIzaSyCiNmV8BM9VI6EV_clRGWoolb9ZAYsVb_4'
+const API_KEY = 'AIzaSyB0NGuGw308FN3TpLmDv6AOFmn8OWSLVCk'
 
 export default class App extends Component {
   constructor(props) {
@@ -31,6 +31,7 @@ export default class App extends Component {
         <section className="container">
           <div className="row justify-content-center">
             <div className="col-12">
+              <h1 className="text-center">Youtube Search</h1>
               <SearchBar onInputSubmit={this._videoSearch} />
             </div>
           </div>
