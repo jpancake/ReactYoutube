@@ -1,14 +1,11 @@
 /* globals describe, it, expect, beforeEach */
-/* eslint no-unused-expressions: 0 */
+/* eslint no-unused-expressions: 0, no-shadow: 0 */
 
 import React from 'react'
 import { render, mount } from 'enzyme'
 
 import VideoList from '../../src/components/VideoList'
 import VideoListItem from '../../src/components/VideoListItem'
-import YTSearch from 'youtube-api-search'
-
-const API_KEY = 'AIzaSyB0NGuGw308FN3TpLmDv6AOFmn8OWSLVCk'
 
 function getProps(props) {
   return {
@@ -58,7 +55,7 @@ function getProps(props) {
           }
         }
       }
-  ],
+    ],
     ...props
   }
 }
@@ -79,7 +76,7 @@ describe('VideoList/VideoListItem', () => {
   describe('w/ videos prop ready', () => {
     let wrapper
     beforeEach(() => {
-      wrapper = mountVideoList()
+      wrapper = renderVideoList()
     })
     it('renders VideoList with a class of video-list', () => {
       expect(VideoList).to.have.length(1)
@@ -88,6 +85,16 @@ describe('VideoList/VideoListItem', () => {
     it('renders VideoListItem with class list-group-item', () => {
       expect(wrapper).to.have.descendants('.list-group-item')
       expect(VideoListItem).to.have.length(1)
+    })
+    it('renders VideoListItem with the correct amount of videos', () => {
+      const wrapper = mountVideoList()
+      expect(wrapper.find('.list-group-item')).to.have.length(wrapper.props().videos.length)
+    })
+    it('renders url and title from props', () => {
+      const wrapper = mountVideoList()
+      const { title, thumbnails: { default: { url } } } = wrapper.props().videos[0].snippet
+      expect(wrapper).to.include.text(title)
+      expect(wrapper.find('.media-object').first()).to.have.attr('src').to.equal(url)
     })
   })
 })

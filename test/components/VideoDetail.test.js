@@ -1,13 +1,25 @@
+/* eslint no-shadow: 0 */
 /* globals describe, it, expect, beforeEach */
 /* eslint no-unused-expressions: 0 */
 
 import React from 'react'
 import { render, mount } from 'enzyme'
+import dateFormat from 'dateformat'
 
 import VideoDetail from '../../src/components/VideoDetail'
 
 function getProps(props) {
   return {
+    video: {
+      id: {
+        videoId: 'r3P9PHneO_8'
+      },
+      snippet: {
+        description: 'Test Description',
+        publishedAt: '2017-01-29T12:00:01.000Z',
+        title: 'Test Video'
+      }
+    },
     ...props
   }
 }
@@ -25,39 +37,34 @@ describe('VideoDetail', () => {
     expect(VideoDetail).to.exist
   })
   it('should render loading div with no video prop', () => {
-    const wrapper = renderVideoDetail()
+    const wrapper = render(<VideoDetail />)
     expect(wrapper).to.include.text('Loading')
   })
   describe('With Video Prop', () => {
-    let video
     let wrapper
     beforeEach(() => {
-      video = {
-        id: {
-          videoId: 12
-        },
-        snippet: {
-          description: 'Test Description',
-          publishedAt: '2017-01-29T12:00:01.000Z',
-          title: 'Test Video'
-        }
-      }
-      wrapper = renderVideoDetail({ video })
+      wrapper = renderVideoDetail()
     })
     it('should render VideoDetail with class video-detail with a video prop', () => {
       expect(VideoDetail).to.have.length(1)
       expect(wrapper).to.have.className('video-detail')
     })
     it('should render the video in a iframe', () => {
+      const wrapper = mountVideoDetail()
       const iframe = wrapper.find('iframe')
-      const URL = `https://www.youtube.com/embed/${video.id.videoId}`
+      const { videoId } = wrapper.props().video.id
+      const URL = `https://www.youtube.com/embed/${videoId}`
+
       expect(iframe).to.have.length(1)
       expect(iframe).to.have.attr('src').equal(URL)
     })
-    it('should render description, publishedAt, and title', () => {
-      expect(wrapper).to.include.text('Test Description')
-      expect(wrapper).to.include.text('January 29th 2017')
-      expect(wrapper).to.include.text('Test Video')
+    it('should render description, publishedAt, and title from Props', () => {
+      const wrapper = mountVideoDetail()
+      const { snippet: { description, publishedAt, title } } = wrapper.props().video
+      const formattedDate = dateFormat(publishedAt, 'mmmm dS yyyy')
+      expect(wrapper).to.include.text(description)
+      expect(wrapper).to.include.text(formattedDate)
+      expect(wrapper).to.include.text(title)
     })
   })
 })

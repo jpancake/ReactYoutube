@@ -9,5 +9,6 @@ global.window = document.defaultView
 global.navigator = window.navigator
 global.expect = chai.expect
 
-chai.use(require('chai-enzyme')())
 chai.use(sinonChai)
+chai.use(require('chai-enzyme')())
+

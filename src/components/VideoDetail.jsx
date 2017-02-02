@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint react/require-default-props: 0 */
+import React, { PropTypes } from 'react'
 import dateFormat from 'dateformat'
 
 const VideoDetail = ({ video }) => {
@@ -29,3 +30,7 @@ const VideoDetail = ({ video }) => {
 }
 
 export default VideoDetail
+
+VideoDetail.propTypes = {
+  video: PropTypes.obj
+}

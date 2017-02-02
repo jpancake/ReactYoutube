@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint react/require-default-props: 0 */
+import React, { PropTypes } from 'react'
 
 const VideoListItem = ({ video, onVideoSelect }) => {
   const { snippet: { title, thumbnails: { default: { url } } } } = video
@@ -19,3 +20,8 @@ const VideoListItem = ({ video, onVideoSelect }) => {
 }
 
 export default VideoListItem
+
+VideoListItem.propTypes = {
+  video: PropTypes.obj,
+  onVideoSelect: PropTypes.func.isRequired
+}

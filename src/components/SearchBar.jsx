@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 export default class SearchBar extends Component {
   constructor(props) {
@@ -33,4 +33,8 @@ export default class SearchBar extends Component {
         </form>
     )
   }
+}
+
+SearchBar.propTypes = {
+  onInputSubmit: PropTypes.func.isRequired
 }

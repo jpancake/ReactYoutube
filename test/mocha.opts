@@ -1,3 +1,0 @@
---complier
---require ./test/test_helper.js
---recursive ./test
