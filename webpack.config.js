@@ -32,7 +32,8 @@ module.exports = {
     modules: [__dirname, 'node_modules'],
     extensions: ['.js', '.jsx', '.sass', '.scss'],
     alias: {
-      Components: path.resolve(__dirname, 'src/components')
+      Components: path.resolve(__dirname, 'src/components'),
+      Styles: path.resolve(__dirname, 'src/styles')
     }
   },
   module: {
@@ -45,12 +46,12 @@ module.exports = {
       {
         test: /\.(sass|scss)$/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: ['css-loader',
+          fallback: 'style-loader',
+          use: ['css-loader',
             {
               loader: 'sass-loader',
-              query: {
-                includePaths: path.resolve(__dirname, 'node_modules/bootstrap/scss')
+              options: {
+                includePaths: [path.resolve(__dirname, 'node_modules/bootstrap/scss')]
               }
             }]
         })

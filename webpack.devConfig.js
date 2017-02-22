@@ -42,7 +42,7 @@ module.exports = {
           {
             loader: 'sass-loader',
             query: {
-              includePaths: path.resolve(__dirname, 'node_modules/bootstrap/scss')
+              includePaths: [path.resolve(__dirname, 'node_modules/bootstrap/scss')]
             }
           }]
       }

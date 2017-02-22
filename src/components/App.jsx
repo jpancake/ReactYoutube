@@ -31,7 +31,7 @@ export default class App extends Component {
         <section className="container">
           <div className="row justify-content-center">
             <div className="col-12">
-              <h1 className="text-center">Youtube Search</h1>
+              <h1 className="text-sm-center">Youtube Search</h1>
               <SearchBar onInputSubmit={this._videoSearch} />
             </div>
           </div>

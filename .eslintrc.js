@@ -15,6 +15,7 @@ module.exports = {
         "linebreak-style": 0,
         "no-console": 0,
         "no-return-assign": 0,
+        "no-multi-assign": 0,
         "max-len": 0,
         "no-underscore-dangle": 0,
         "no-trailing-spaces": 0,
@@ -23,6 +24,7 @@ module.exports = {
         "react/jsx-filename-extension": 0,
         "react/jsx-closing-bracket-location": 0,
         "react/jsx-indent-props": 0,
+        "react/prop-types": 0,
         "jsx-a11y/no-static-element-interactions": 0
     }
 };
